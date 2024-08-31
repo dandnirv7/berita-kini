@@ -1,5 +1,5 @@
 import React from "react";
-import whiteLogo from "@/assets/white-logo.svg";
+import footerLogo from "@/assets/footer-logo.svg";
 import { Link } from "react-router-dom";
 import {
   BsYoutube as Youtube,
@@ -9,10 +9,10 @@ import {
 } from "react-icons/bs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import type { menuItems } from "@/types/types";
+import type { MenuItems } from "@/types/types";
 
 const Footer: React.FC = () => {
-  const itemsFooter: menuItems[] = [
+  const itemsFooter: MenuItems[] = [
     {
       title: "Beranda",
       path: "/",
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
       <section className="flex flex-col gap-11">
         <div className="flex flex-col items-start gap-6">
           <div className="flex flex-row items-center gap-4">
-            <img src={whiteLogo} alt="logo" />
+            <img src={footerLogo} alt="logo" />
             <h1 className="text-2xl font-semibold text-left text font-poppins">
               Berita Kini
             </h1>
@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
           </ul>
         </div>
       </section>
-      <section className="flex flex-col gap-y-5">
+      <section className="flex flex-col w-1/4 gap-y-5">
         <h1 className="text-xl font-semibold font-nunito-sans">
           Berlangganan Berita Terbaru
         </h1>
@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
           />
           <Button
             type="submit"
-            className="absolute p-3 w-11 h-11 bg-primary-500 right-2"
+            className="absolute p-3 w-11 h-11 bg-primary right-2"
           >
             <BsSendFill size={24} />
           </Button>

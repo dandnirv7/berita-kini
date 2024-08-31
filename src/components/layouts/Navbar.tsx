@@ -1,65 +1,80 @@
-import React from "react";
-import logo from "@/assets/logo.svg";
-import type { menuItems } from "@/types/types";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import {
+  Navbar as NavbarNextUI,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+} from "@nextui-org/react";
 
-const Navbar: React.FC = () => {
+import defaultLogo from "@/assets/navbar-default-logo.svg";
+import whiteLogo from "@/assets/navbar-white-logo.svg";
+import type { MenuItems } from "@/types/types";
+
+export default function Navbar() {
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const menuItems: menuItems[] = [
-    {
-      title: "Beranda",
-      path: "/",
-    },
-    {
-      title: "Terbaru",
-      path: "/terbaru",
-    },
-    {
-      title: "Hiburan",
-      path: "/hiburan",
-    },
-    {
-      title: "Gaya Hidup",
-      path: "/gaya-hidup",
-    },
-    {
-      title: "Olahraga",
-      path: "/olahraga",
-    },
-    {
-      title: "Nasional",
-      path: "/nasional",
-    },
-    {
-      title: "Internasional",
-      path: "/internasional",
-    },
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const menuItems: MenuItems[] = [
+    { title: "Beranda", path: "/" },
+    { title: "Terbaru", path: "/terbaru" },
+    { title: "Hiburan", path: "/hiburan" },
+    { title: "Gaya Hidup", path: "/gaya-hidup" },
+    { title: "Olahraga", path: "/olahraga" },
+    { title: "Nasional", path: "/nasional" },
+    { title: "Internasional", path: "/internasional" },
   ];
-  return (
-    <nav className="px-16 py-8 shadow-sm flex flex-row items-center justify-between border-b border-[#F2F2F2]">
-      <div className="flex flex-row items-center gap-4">
-        <img src={logo} alt="logo" className="" />
-        <h1 className="text-2xl font-semibold text-left font-poppins">
-          Berita Kini
-        </h1>
-      </div>
-      <ul className="flex flex-row gap-x-7">
-        {menuItems.map((item, index) => (
-          <li
-            key={index}
-            className={`font-semibold ${
-              location.pathname === item.path
-                ? "text-primary-500"
-                : "text-secondary-text"
-            }`}
-          >
-            <Link to={item.path}>{item.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-};
 
-export default Navbar;
+  const navbarBgClass = isScrolled ? "bg-primary" : "bg-white";
+  const logoSrc = isScrolled ? whiteLogo : defaultLogo;
+  const logoTextClass = isScrolled ? "text-white" : "text-black";
+
+  const getLinkClass = (path: string) => {
+    if (location.pathname === path) {
+      return isScrolled ? "text-white" : "text-primary";
+    }
+    return isScrolled ? "text-[#F2F2F2]" : "text-secondary-text";
+  };
+
+  return (
+    <NavbarNextUI
+      isBordered
+      maxWidth="2xl"
+      className={`z-[99] px-12 py-4 ${navbarBgClass}`}
+      isBlurred={false}
+    >
+      <NavbarBrand>
+        <div className="flex flex-row items-center gap-4">
+          <img src={logoSrc} alt="logo" />
+          <h1
+            className={`text-2xl font-semibold text-left font-poppins ${logoTextClass}`}
+          >
+            Berita Kini
+          </h1>
+        </div>
+      </NavbarBrand>
+      <NavbarContent className="hidden gap-4 sm:flex" justify="center">
+        {menuItems.map((item, index) => (
+          <NavbarItem key={index}>
+            <Link
+              href={item.path}
+              className={`font-semibold ${getLinkClass(item.path)}`}
+            >
+              {item.title}
+            </Link>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
+    </NavbarNextUI>
+  );
+}
