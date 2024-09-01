@@ -18,16 +18,16 @@ const Footer: React.FC = () => {
       path: "/",
     },
     {
-      title: "Kesehatan",
-      path: "/kesehatan",
+      title: "Teknologi",
+      path: "/teknologi",
     },
     {
       title: "Otomotif",
       path: "/otomotif",
     },
     {
-      title: "Politik",
-      path: "/politik",
+      title: "Berita",
+      path: "/berita",
     },
     {
       title: "Olahraga",

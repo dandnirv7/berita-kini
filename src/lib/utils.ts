@@ -54,24 +54,38 @@ export const slugifyTitle = (title: string) => {
 
 export const checkKeywordInUrl = (url: string) => {
   const keywords = [
-    { key: "nasional", display: "nasional" },
     { key: "terbaru", display: "terbaru" },
     { key: "internasional", display: "internasional" },
+    { key: "nasional", display: "nasional" },
     { key: "ekonomi", display: "ekonomi" },
     { key: "olahraga", display: "olahraga" },
     { key: "teknologi", display: "teknologi" },
     { key: "hiburan", display: "hiburan" },
     { key: "gaya-hidup", display: "gaya hidup" },
+    { key: "edukasi", display: "edukasi" },
+    { key: "otomotif", display: "otomotif" },
+    { key: "berita", display: "berita" },
   ];
 
-  const lowerCaseUrl = url.toLowerCase();
+  const lowerCaseUrl = url?.toLowerCase();
 
   for (let i = 0; i < keywords.length; i++) {
     const keyword = keywords[i];
-    if (lowerCaseUrl.includes(keyword.key)) {
-      return keyword.display;
+    if (lowerCaseUrl?.includes(keyword.key)) {
+      return keyword.key;
     }
   }
 
   return null;
+};
+
+export const findPostBySlug = (
+  posts: Post[],
+  slug?: string
+): Post | undefined => {
+  if (!slug) return undefined;
+
+  const slugPart = slug.split("/").pop();
+
+  return posts.find((post) => post.link.includes(slugPart || ""));
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import { useNationalNews } from "@/features/antara/fetchNationalNews";
 import { useLatestNews } from "@/features/cnn/fetchLatestNews";
-import { BasePage } from "@/components/fragments/BasePage";
+import { MainPage } from "@/components/fragments/MainPage";
 
-export const HomePage: React.FC = () => {
+const HomePage: React.FC = () => {
   const { data: nationalNews, isLoading: isNationalNewsLoading } =
     useNationalNews();
   const { data: latestNews, isLoading: isLatestNewsLoading } = useLatestNews();
@@ -11,10 +11,12 @@ export const HomePage: React.FC = () => {
   const isLoading = isNationalNewsLoading || isLatestNewsLoading;
 
   return (
-    <BasePage
+    <MainPage
       isLoading={isLoading}
       nationalNews={nationalNews}
       latestNews={latestNews}
     />
   );
 };
+
+export default HomePage;

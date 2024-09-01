@@ -1,8 +1,9 @@
-import { Button } from "@nextui-org/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const NotFoundPage: React.FC = () => {
+import { Button } from "@nextui-org/react";
+
+const NotFoundPage: React.FC = () => {
   return (
     <main className="flex flex-col items-center justify-center gap-6 mb-10 text-center font-nunito-sans">
       <>
@@ -32,3 +33,5 @@ export const NotFoundPage: React.FC = () => {
     </main>
   );
 };
+
+export default NotFoundPage;

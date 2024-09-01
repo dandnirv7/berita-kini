@@ -27,10 +27,16 @@ export const PostCard: React.FC<PostCardProps> = ({ post }) => (
       </Link>
       <div className="flex flex-row items-center gap-y-3">
         <Link
-          to={`/${checkKeywordInUrl(post?.link)}`}
-          className="font-semibold text-primary"
+          to={`/${
+            checkKeywordInUrl(post?.link) === "gaya hidup"
+              ? "gaya-hidup"
+              : checkKeywordInUrl(post?.link)
+          }`}
+          className="font-semibold capitalize text-primary"
         >
-          Nasional
+          {checkKeywordInUrl(post?.link) === "gaya-hidup"
+            ? "gaya hidup"
+            : checkKeywordInUrl(post?.link)}
         </Link>
         <Dot className="text-[#d9d9d9]" size={24} />
         <p>

@@ -1,12 +1,13 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { useNationalNews } from "@/features/antara/fetchNationalNews";
-import { filterPosts } from "@/lib/utils";
-import { BasePage } from "@/components/fragments/BasePage";
-import type { Post } from "@/types/types";
-import { useLatestNews } from "@/features/cnn/fetchLatestNews";
 
-export const Search: React.FC = () => {
+import { filterPosts } from "@/lib/utils";
+import { useNationalNews } from "@/features/antara/fetchNationalNews";
+import { MainPage } from "@/components/fragments/MainPage";
+import { useLatestNews } from "@/features/cnn/fetchLatestNews";
+import type { Post } from "@/types/types";
+
+const SearchPage: React.FC = () => {
   const { data: nationalNews, isLoading: isNationalNewsLoading } =
     useNationalNews();
   const { data: latestNews, isLoading: isLatestNewsLoading } = useLatestNews();
@@ -21,7 +22,7 @@ export const Search: React.FC = () => {
   );
 
   return (
-    <BasePage
+    <MainPage
       isLoading={isLoading}
       nationalNews={nationalNews}
       latestNews={latestNews}
@@ -29,3 +30,5 @@ export const Search: React.FC = () => {
     />
   );
 };
+
+export default SearchPage;

@@ -54,14 +54,16 @@ export default function Navbar() {
       isBlurred={false}
     >
       <NavbarBrand>
-        <div className="flex flex-row items-center gap-4">
-          <img src={logoSrc} alt="logo" />
-          <h1
-            className={`text-2xl font-semibold text-left font-poppins ${logoTextClass}`}
-          >
-            Berita Kini
-          </h1>
-        </div>
+        <Link href="/">
+          <div className="flex flex-row items-center gap-4">
+            <img src={logoSrc} alt="logo" />
+            <h1
+              className={`text-2xl font-semibold text-left font-poppins ${logoTextClass}`}
+            >
+              Berita Kini
+            </h1>
+          </div>
+        </Link>
       </NavbarBrand>
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         {menuItems.map((item, index) => (
