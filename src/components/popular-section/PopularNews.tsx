@@ -19,13 +19,15 @@ export const PopularNews: React.FC<PostListProps> = ({ posts }) => {
             <div className="absolute flex items-center justify-center w-8 h-8 text-xl font-semibold text-white rounded-full font-nunito-sans -top-3 bg-dark-700 -left-3 z-[50]">
               {index + 1}
             </div>
-            <div className="grid grid-cols-2 gap-x-4">
+            <div className="flex flex-row gap-4">
               <Image
                 src={news.thumbnail}
-                className="object-cover"
+                className="object-cover w-full"
                 alt={news.title}
+                width={256}
+                height={128}
               />
-              <div className="flex flex-col justify-between gap-2">
+              <div className="flex flex-col justify-between gap-2 pb-2 pr-4">
                 <Link
                   to={`/${checkKeywordInUrl(news?.link)}/detail/${slugifyTitle(
                     news?.title
